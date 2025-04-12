@@ -1,0 +1,501 @@
+{
+	"info": {
+		"_postman_id": "0ef7d386-88d5-4940-be95-6527fc29161b",
+		"name": "Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43660373",
+		"_collection_link": "https://bold-flare-4502241.postman.co/workspace/%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80's-Workspace~33b064fe-f074-4db0-8b3f-3fd8c5ce548b/collection/43660373-0ef7d386-88d5-4940-be95-6527fc29161b?action=share&source=collection_link&creator=43660373"
+	},
+	"item": [
+		{
+			"name": "Типы данных",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 10,\r\n  \"petId\": 123,\r\n  \"quantity\": 10,\r\n  \"shipDate\": \"2023-07-10T17:34:02.982Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://petstore.swagger.io/v2/store/order"
+			},
+			"response": []
+		},
+		{
+			"name": "Статус код",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Проверка на статус-код 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка нескольких статус кодов\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,404]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/random?category=animal",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"random"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "animal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Проверка полей со строчным типом данных",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Глобал проверка\", function () {\r",
+							"    pm.expect(jsonData.location).to.eql({\r",
+							"        \"latitude\": \"-38.383494\",\r",
+							"        \"longitude\": \"33.427362\"\r",
+							"    })\r",
+							"    pm.expect(jsonData.accuracy).to.eql(\"50\")\r",
+							"    pm.expect(jsonData.name).to.eql(\"Frontline house\")\r",
+							"    pm.expect(jsonData.phone_number).to.eql(\"(+91) 983 893 3937\")\r",
+							"    pm.expect(jsonData.address).to.eql(\"29, side layout, cohen 09\")\r",
+							"    pm.expect(jsonData.types).to.eql(\"shoe park,shop\")\r",
+							"    pm.expect(jsonData.website).to.eql(\"http://google.com\")\r",
+							"    pm.expect(jsonData.language).to.eql(\"French-IN\")\r",
+							"});\r",
+							"\r",
+							" pm.test(\"Проверка на сожержимое 1\", function () {\r",
+							"    pm.expect(jsonData.location).to.eql({\r",
+							"        \"latitude\": \"-38.383494\",\r",
+							"        \"longitude\": \"33.427362\"\r",
+							"    })\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое полей 2\", function () {\r",
+							"    pm.expect(jsonData.accuracy).to.eql(\"50\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое полей 3\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Frontline house\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое полей 4\", function () {\r",
+							"    pm.expect(jsonData.phone_number).to.eql(\"(+91) 983 893 3937\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое полей 5\", function () {\r",
+							"    pm.expect(jsonData.address).to.eql(\"29, side layout, cohen 09\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое полей 6\", function () {\r",
+							"    pm.expect(jsonData.types).to.eql(\"shoe park,shop\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое полей 7\", function () {\r",
+							"    pm.expect(jsonData.website).to.eql(\"http://google.com\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое полей 8\", function () {\r",
+							"    pm.expect(jsonData.language).to.eql(\"French-IN\")\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=fc5074599949e49411383db2e52dd336",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"get",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						},
+						{
+							"key": "place_id",
+							"value": "fc5074599949e49411383db2e52dd336"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Статус код негатив",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// pm.test(\"Проверка на статуса\", function () {\r",
+							"//     pm.response.to.have.status(2);\r",
+							"//     pm.expect(pm.response.code).to.be.oneOf([200, 202]);\r",
+							"//     pm.response.to.have.status(\"OK\");\r",
+							"// });\r",
+							"\r",
+							"// // pm.test(\"Successful POST request\", function () {\r",
+							"// //     pm.expect(pm.response.code).to.be.oneOf([200, 202]);\r",
+							"// // });\r",
+							"\r",
+							"// // pm.test(\"Проверка на статус сообщения\", function () {\r",
+							"// //     pm.response.to.have.status(\"OK\");\r",
+							"// // });\r",
+							" pm.test(\"Проверка на статус-код -- 100-й (100-199)\", function () {\r",
+							"    pm.response.to.be.info ;\r",
+							"    });\r",
+							"\r",
+							" pm.test(\"Проверка на статус-код -- 200-й \", function () {\r",
+							"    pm.response.to.be.success ;\r",
+							"    });\r",
+							"\r",
+							" pm.test(\"Проверка на статус-код -- 300-й \", function () {\r",
+							"    pm.response.to.be.redirection ;\r",
+							"    });\r",
+							"\r",
+							" pm.test(\"Проверка на статус-код -- 400-й и 500-й\", function () {\r",
+							"    pm.response.to.be.error ;\r",
+							"    });\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/random?category=anima",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"random"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "anima"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NOT",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json()\r",
+							"\r",
+							"  pm.test(\"Проверка на сожержимое\", function () {\r",
+							"    pm.expect(jsonData.status).not.eql(\"a\")\r",
+							"})\r",
+							"\r",
+							"  pm.test(\"Проверка на сожержимое поля Boolean\", function () {\r",
+							"    pm.expect(jsonData.status == 'approved').to.be.true;\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 10,\r\n  \"petId\": 123,\r\n  \"quantity\": 10,\r\n  \"shipDate\": \"2023-07-10T17:34:02.982Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://petstore.swagger.io/v2/store/order"
+			},
+			"response": []
+		},
+		{
+			"name": "Знаки равенства",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Проверка на 2 знака равно\", function () {\r",
+							"     pm.expect(jsonData.accuracy == 50).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=fc5074599949e49411383db2e52dd336",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"get",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						},
+						{
+							"key": "place_id",
+							"value": "fc5074599949e49411383db2e52dd336"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NULL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Проверка на что поле не пусто\", function () {\r",
+							"     pm.expect(jsonData.phone_number).not.eql(null);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rahulshettyacademy.com/maps/api/place/get/json?key=qaclick123&place_id=cce9d7d5c9a0ac14812bbbec554de9fc",
+					"protocol": "https",
+					"host": [
+						"rahulshettyacademy",
+						"com"
+					],
+					"path": [
+						"maps",
+						"api",
+						"place",
+						"get",
+						"json"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "qaclick123"
+						},
+						{
+							"key": "place_id",
+							"value": "cce9d7d5c9a0ac14812bbbec554de9fc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "базовые проверки - числа",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое полей 2\", function () {\r",
+							"    pm.expect(jsonData.quantity).to.eql(10)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 10,\r\n  \"petId\": 123,\r\n  \"quantity\": 10,\r\n  \"shipDate\": \"2023-07-10T17:34:02.982Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://petstore.swagger.io/v2/store/order"
+			},
+			"response": []
+		},
+		{
+			"name": "базовые проверки - числа Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое +-\", function () {\r",
+							"    pm.expect(jsonData.quantity).to.be.closeTo(10, 1)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое >\", function () {\r",
+							"    pm.expect(jsonData.quantity).be.above(9)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на сожержимое <\", function () {\r",
+							"    pm.expect(jsonData.quantity).be.below(11)\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 10,\r\n  \"petId\": 123,\r\n  \"quantity\": 10,\r\n  \"shipDate\": \"2023-07-10T17:34:02.982Z\",\r\n  \"status\": \"approved\",\r\n  \"complete\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://petstore.swagger.io/v2/store/order"
+			},
+			"response": []
+		}
+	]
+}

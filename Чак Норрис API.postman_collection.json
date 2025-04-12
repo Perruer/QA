@@ -1,0 +1,122 @@
+{
+	"info": {
+		"_postman_id": "abc87e90-0047-470b-bf74-f61f01d75005",
+		"name": "Чак Норрис API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "43660373",
+		"_collection_link": "https://bold-flare-4502241.postman.co/workspace/%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80's-Workspace~33b064fe-f074-4db0-8b3f-3fd8c5ce548b/collection/43660373-abc87e90-0047-470b-bf74-f61f01d75005?action=share&source=collection_link&creator=43660373"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://api.chucknorris.io/jokes/random"
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/random?category=animal",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"random"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "animal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Проверка на частичное совпадение строки",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json()\r",
+							"\r",
+							"pm.test(\"Проверка на частичное сожержимое поля\", function () {\r",
+							"    pm.expect(jsonData.value).to.include(\"Chuck Norris\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Проверка на частичное сожержимое поля - строка\", function () {\r",
+							"    pm.expect(jsonData.value).to.have.string(\"Chuck Norris\")\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/random?category=animal",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"random"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "animal"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.chucknorris.io/jokes/search?query=people",
+					"protocol": "https",
+					"host": [
+						"api",
+						"chucknorris",
+						"io"
+					],
+					"path": [
+						"jokes",
+						"search"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "people"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
